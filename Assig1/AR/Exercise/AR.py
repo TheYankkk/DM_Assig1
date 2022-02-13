@@ -8,7 +8,12 @@ data=pd.read_csv(r"mammographic_masses.csv",delimiter=",",header=0)
 #print(data)
 d=data.values.tolist()
 for each in range(len(d)):
-    d[each][-1]=str(d[each][-1])
+    d[each][0]="BI-RADS:"+d[each][0]
+    d[each][1] = "Age:" + d[each][1]
+    d[each][2] = "Shape:" + d[each][2]
+    d[each][3] = "Margin:" + d[each][3]
+    d[each][4] = "Density:" + d[each][4]
+    d[each][-1]="Severity:"+str(d[each][-1])
 #print(d)
 te = TransactionEncoder()
 te_ary = te.fit(d).transform(d)
