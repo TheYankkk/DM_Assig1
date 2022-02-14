@@ -42,6 +42,7 @@ frequent_itemsets_new = apriori(df_new, min_support=0.1, use_colnames=True)
 a=association_rules(frequent_itemsets_new, metric="confidence", min_threshold=0.9)
 #print(a[["antecedents","consequents","support","confidence"]])
 #"Severity:1"in a["antecedents"][i] or "Severity:0"in a["antecedents"][i]or
+
 for i in range(len(a["antecedents"])):
     if ("Severity:1" in a["consequents"][i] or "Severity:0" in a["consequents"][i]):
         print(a["antecedents"][i],":",a["consequents"][i])
