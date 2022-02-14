@@ -28,3 +28,16 @@ a=association_rules(frequent_itemsets, metric="confidence", min_threshold=0.9)
 
 #visualizing association rules results
 print(a[["antecedents","consequents","support","confidence"]])
+dnew=[]
+for each in range(len(d)):
+    dnew.append(d[each][1:])
+#print(dnew)
+te_new = TransactionEncoder()
+te_ary_new = te_new.fit(dnew).transform(dnew)
+#print(te.columns_)
+df_new = pd.DataFrame(te_ary_new,columns=te_new.columns_)
+print(df_new)
+frequent_itemsets_new = apriori(df_new, min_support=0.1, use_colnames=True)
+#print(frequent_itemsets_new)
+a=association_rules(frequent_itemsets_new, metric="confidence", min_threshold=0.9)
+print(a[["antecedents","consequents","support","confidence"]])
