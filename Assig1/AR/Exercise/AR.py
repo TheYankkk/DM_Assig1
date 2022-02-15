@@ -55,5 +55,14 @@ special_itemsets = apriori(df, min_support=0.002, use_colnames=True)
 s=association_rules(special_itemsets, metric="confidence", min_threshold=0)
 #print(a)
 for i in range(len(s)):
-    if ("BI-RADS:6" in s["antecedents"][i] and "Severity:0" in s["consequents"][i]):
+    if ("BI-RADS:0" in s["antecedents"][i] and "Severity:1" in s["consequents"][i]):
         print("\n",s["antecedents"][i],":",s["consequents"][i])
+
+#Question 4
+frequent_itemsets = apriori(df, min_support=0.001, use_colnames=True)
+a=association_rules(frequent_itemsets, metric="confidence", min_threshold=0)
+for i in range(len(a)):
+    if (a["antecedents"][i]==frozenset({'Age:35'}) and a["consequents"][i])==frozenset({'Severity:0'}):
+        print(a["antecedents"][i],":",a["consequents"][i],",Support:",a["support"][i],",Confidence:,",a["confidence"][i])
+
+
