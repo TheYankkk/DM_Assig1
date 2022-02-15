@@ -49,6 +49,7 @@ for i in range(len(a["antecedents"])):
     if ("Severity:1" in a["consequents"][i] or "Severity:0" in a["consequents"][i]):
         print(a["antecedents"][i],":",a["consequents"][i])
 
+
 #Question 3
 special_itemsets = apriori(df, min_support=0.002, use_colnames=True)
 s=association_rules(special_itemsets, metric="confidence", min_threshold=0)
