@@ -28,6 +28,8 @@ a=association_rules(frequent_itemsets, metric="confidence", min_threshold=0.9)
 
 #visualizing association rules results
 print(a[["antecedents","consequents","support","confidence"]])
+
+#Question 2
 dnew=[]
 for each in range(len(d)):
     dnew.append(d[each][1:])
@@ -46,3 +48,11 @@ a=association_rules(frequent_itemsets_new, metric="confidence", min_threshold=0.
 for i in range(len(a["antecedents"])):
     if ("Severity:1" in a["consequents"][i] or "Severity:0" in a["consequents"][i]):
         print(a["antecedents"][i],":",a["consequents"][i])
+
+#Question 3
+special_itemsets = apriori(df, min_support=0.002, use_colnames=True)
+s=association_rules(special_itemsets, metric="confidence", min_threshold=0)
+#print(a)
+for i in range(len(s)):
+    if ("BI-RADS:6" in s["antecedents"][i] and "Severity:0" in s["consequents"][i]):
+        print("\n",s["antecedents"][i],":",s["consequents"][i])
