@@ -66,3 +66,26 @@ for i in range(len(a)):
         print(a["antecedents"][i],":",a["consequents"][i],",Support:",a["support"][i],",Confidence:,",a["confidence"][i])
 
 
+#Question 5
+data=pd.read_csv(r"mammographic_masses.csv",delimiter=",",header=0)
+#print(data)
+index_special=data[data['Age'].isin(["?"])].index.tolist()
+#print(index_special)
+data_new=data.drop(index_special)#drop the rows with Age is ?
+d_num=data_new.values.tolist()
+
+for each in range(len(d_num)):
+    d_num[each][0]="BI-RADS:"+d_num[each][0]
+    d_num[each][1] = int(d_num[each][1])
+    d_num[each][2] = "Shape:" + d_num[each][2]
+    d_num[each][3] = "Margin:" + d_num[each][3]
+    d_num[each][4] = "Density:" + d_num[each][4]
+    d_num[each][-1]="Severity:"+str(d_num[each][-1])
+#print(d_num)
+te = TransactionEncoder()
+te_ary = te.fit(d_num).transform(d_num)
+#print(te.columns_)
+df = pd.DataFrame(te_ary,columns=te.columns_)
+frequent_itemsets = apriori(df, min_support=0.1, use_colnames=True)
+a=association_rules(frequent_itemsets, metric="confidence", min_threshold=0.9)
+print(a)
