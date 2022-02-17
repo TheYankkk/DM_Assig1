@@ -74,7 +74,6 @@ index_special=data[data['Age'].isin(["?"])].index.tolist()
 data_new=data.drop(index_special)#drop the rows with Age is ?
 d_num=data_new.values.tolist()
 sum=0
-
 for each in range(len(d_num)):
     d_num[each][0]="BI-RADS:"+d_num[each][0]
     d_num[each][1] = int(d_num[each][1])
