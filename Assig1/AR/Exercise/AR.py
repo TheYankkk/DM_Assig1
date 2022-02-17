@@ -86,17 +86,16 @@ mean=sum/len(d_num)
 mean=int(mean)
 #print(mean)
 for each in range(len(d_num)):
-    d_num[each][0]="BI-RADS:"+d_num[each][0]
-    d_num[each][1] = int(d_num[each][1])
-    sum+=d_num[each][1]
-    d_num[each][2] = "Shape:" + d_num[each][2]
-    d_num[each][3] = "Margin:" + d_num[each][3]
-    d_num[each][4] = "Density:" + d_num[each][4]
-    d_num[each][-1]="Severity:"+str(d_num[each][-1])
+    if d_num[each][1]>mean:
+        d_num[each][1] = "Age>"+str(mean)
+        #print(d_num[each][1])
+    else:
+        d_num[each][1] = "Age<=" + str(mean)
+
 te = TransactionEncoder()
 te_ary = te.fit(d_num).transform(d_num)
 #print(te.columns_)
 df = pd.DataFrame(te_ary,columns=te.columns_)
 frequent_itemsets = apriori(df, min_support=0.1, use_colnames=True)
 a=association_rules(frequent_itemsets, metric="confidence", min_threshold=0.9)
-print(a)
+print(a[["antecedents","consequents","support","confidence"]])
