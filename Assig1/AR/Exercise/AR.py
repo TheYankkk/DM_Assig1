@@ -73,15 +73,26 @@ index_special=data[data['Age'].isin(["?"])].index.tolist()
 #print(index_special)
 data_new=data.drop(index_special)#drop the rows with Age is ?
 d_num=data_new.values.tolist()
-
+sum=0
 for each in range(len(d_num)):
     d_num[each][0]="BI-RADS:"+d_num[each][0]
     d_num[each][1] = int(d_num[each][1])
+    sum+=d_num[each][1]
     d_num[each][2] = "Shape:" + d_num[each][2]
     d_num[each][3] = "Margin:" + d_num[each][3]
     d_num[each][4] = "Density:" + d_num[each][4]
     d_num[each][-1]="Severity:"+str(d_num[each][-1])
-#print(d_num)
+mean=sum/len(d_num)
+mean=int(mean)
+#print(mean)
+for each in range(len(d_num)):
+    d_num[each][0]="BI-RADS:"+d_num[each][0]
+    d_num[each][1] = int(d_num[each][1])
+    sum+=d_num[each][1]
+    d_num[each][2] = "Shape:" + d_num[each][2]
+    d_num[each][3] = "Margin:" + d_num[each][3]
+    d_num[each][4] = "Density:" + d_num[each][4]
+    d_num[each][-1]="Severity:"+str(d_num[each][-1])
 te = TransactionEncoder()
 te_ary = te.fit(d_num).transform(d_num)
 #print(te.columns_)
