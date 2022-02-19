@@ -21,4 +21,13 @@ print(SSE)
 
 #question 3
 name=data.index
-print(name[0])
+clu=[]
+i=0
+lab=kmeans.labels_
+lab=lab.tolist()
+
+for each in lab:
+    temp=name[i]+':'+str(each)
+    i+=1
+    clu.append(temp)
+print(clu)
