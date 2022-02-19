@@ -8,4 +8,6 @@ d=data.values.tolist()
 X=np.array(d)
 kmeans = KMeans(init="random").fit(X)
 print(kmeans.labels_)
+s=kmeans.labels_.shape
+print(s)
 
