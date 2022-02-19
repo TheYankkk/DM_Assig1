@@ -18,3 +18,5 @@ kmeans = KMeans(init="k-means++",n_clusters=8,n_init=100,max_iter=10000,random_s
 print(kmeans.labels_)
 SSE=kmeans.inertia_
 print(SSE)
+
+#question 3
