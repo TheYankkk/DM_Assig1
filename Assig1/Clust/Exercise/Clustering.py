@@ -20,3 +20,5 @@ SSE=kmeans.inertia_
 print(SSE)
 
 #question 3
+name=data.index
+print(name[0])
