@@ -14,3 +14,7 @@ SSE=kmeans.inertia_
 print(SSE)
 
 #question 2
+kmeans = KMeans(init="k-means++",n_clusters=8,n_init=100,max_iter=10000,random_state=10).fit(X)
+print(kmeans.labels_)
+SSE=kmeans.inertia_
+print(SSE)
