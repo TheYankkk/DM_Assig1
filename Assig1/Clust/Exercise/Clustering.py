@@ -25,9 +25,15 @@ clu=[]
 i=0
 lab=kmeans.labels_
 lab=lab.tolist()
-
+dict={}
 for each in lab:
-    temp=name[i]+':'+str(each)
+    if each not in dict.keys():
+        dict[each]=[name[i]]
+        #print(dict)
+    else:
+        temp=dict[each]
+        temp.append(name[i])
+        dict[each] = temp
     i+=1
-    clu.append(temp)
-print(clu)
+print(dict)
+
